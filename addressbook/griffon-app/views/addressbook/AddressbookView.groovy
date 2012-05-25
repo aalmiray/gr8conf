@@ -18,7 +18,7 @@ application(title: 'addressbook',
     }
     migLayout(layoutConstraints: 'fill')
     scrollPane(constraints: 'west, w 180!', border: titledBorder(getMessage('title.Contacts', 'Contacts'))) {
-        list(model: eventListModel(source: model.contacts),
+        list(id: 'contactList', model: eventListModel(source: model.contacts),
              selectionMode: ListSelectionModel.SINGLE_SELECTION,
              keyReleased: { e ->  // enter/return key
                  if (e.keyCode != KeyEvent.VK_ENTER) return

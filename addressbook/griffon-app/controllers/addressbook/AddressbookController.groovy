@@ -5,23 +5,38 @@ class AddressbookController {
     def model
     def view
 
-    def newAction = { 
-        println 'new'
+    def newAction = {
+        view.contactList.clearSelection()
+        model.selectedIndex = -1
     }
 
     def saveAction = { 
-        println 'save'
+        boolean isNew = model.selectedIndex == -1
+        Contact contact = isNew ? new Contact() : model.contacts[model.selectedIndex]
+        for (propName in Contact.PROPERTIES) {
+            contact[propName] = model[propName]
+        }
+        if (isNew) {
+            execInsideUIAsync {
+                model.contacts << contact
+                contact.id = model.contacts.size()
+                view.contactList.selectedIndex = contact.id - 1
+            }
+        } else {
+            view.contactList.repaint()
+        }
     }
 
     def deleteAction = {
-        println 'delete'
+        if (model.selectedIndex > -1) {
+            int index = model.selectedIndex
+            model.selectedIndex = -1
+            view.contactList.clearSelection()
+            model.contacts.remove(index)
+        }
     }
 
     void dumpAction(evt) {
-        println "name = $model.name"
-        println "lastname = $model.lastname"
-        println "address = $model.address"
-        println "company = $model.company"
-        println "email = $model.email"
+        model.contacts.each { println it }
     }
 }

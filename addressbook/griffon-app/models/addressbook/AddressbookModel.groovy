@@ -16,9 +16,9 @@ class AddressbookModel {
     int selectedIndex = -1
 
     private selectionUpdater = { e ->
-        Contact selectedContact = contacts[selectedIndex]
+        Contact selectedContact = selectedIndex != -1 ? contacts[selectedIndex] : null
         for (propName in Contact.PROPERTIES) {
-            this[propName] = selectedContact[propName]
+            this[propName] = selectedContact ? selectedContact[propName] : ''
         }
     }
 
