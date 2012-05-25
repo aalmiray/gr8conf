@@ -18,8 +18,20 @@ application(title: 'addressbook',
     }
     migLayout(layoutConstraints: 'fill')
     scrollPane(constraints: 'west, w 180!') {
-        list()
-    }
+        list(model: eventListModel(source: model.contacts),
+             border: titledBorder(title: 'Contacts'),
+             selectionMode: ListSelectionModel.SINGLE_SELECTION,
+             keyReleased: { e ->  // enter/return key
+                 if (e.keyCode != KeyEvent.VK_ENTER) return
+                 int index = e.source.selectedIndex
+                 if (index > -1) model.selectedIndex = index
+             },
+             mouseClicked: { e -> // double click
+                 if (e.clickCount != 2) return
+                 int index = e.source.locationToIndex(e.point)
+                 if (index > -1) model.selectedIndex = index
+             })
+        }
     panel(constraints: 'center, grow', border: titledBorder(title: getMessage('title.Contact', 'Contact'))) {
         migLayout(layoutConstraints: 'fill')
         for (propName in Contact.PROPERTIES) {
