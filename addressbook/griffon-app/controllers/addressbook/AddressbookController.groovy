@@ -18,6 +18,10 @@ class AddressbookController {
     }
 
     void dumpAction(evt) {
-        println 'dump'
+        println "name = $model.name"
+        println "lastname = $model.lastname"
+        println "address = $model.address"
+        println "company = $model.company"
+        println "email = $model.email"
     }
 }

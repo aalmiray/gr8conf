@@ -25,7 +25,8 @@ application(title: 'addressbook',
         for (propName in Contact.PROPERTIES) {
             String key = "addressbook.Contact.${propName}.label"
             label(text: getMessage(key, GriffonNameUtils.getNaturalName(propName)) + ':', constraints: 'right')
-            textField(columns: 30, constraints: 'grow, wrap')
+            textField(columns: 30, constraints: 'grow, wrap',
+                text: bind(propName, source: model, mutual: true))
         }
     }
     panel(constraints: 'east, grow', border: titledBorder(title: getMessage('title.Actions', 'Actions'))) {
