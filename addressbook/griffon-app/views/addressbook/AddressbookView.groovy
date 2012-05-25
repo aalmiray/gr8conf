@@ -1,5 +1,26 @@
 package addressbook
 
+actions {
+    action(id: 'newAction',
+        name: 'New',
+        mnemonic: 'N',
+        accelerator: 'meta N',
+        closure: controller.newAction)
+    action(id: 'saveAction',
+        name: 'Save',
+        mnemonic: 'S',
+        accelerator: 'meta S',
+        closure: controller.saveAction)
+    action(id: 'deleteAction',
+        name: 'Delete',
+        closure: controller.deleteAction)
+    action(id: 'dumpAction',
+        name: 'Dump',
+        mnemonic: 'D',
+        accelerator: 'meta D',
+        closure: controller.&dumpAction)
+}
+
 application(title: 'addressbook',
   pack: true,
   resizable: true,
@@ -10,10 +31,10 @@ application(title: 'addressbook',
                imageIcon('/griffon-icon-16x16.png').image]) {
     menuBar {
         menu('Contacts') {
-            menuItem('New',    actionPerformed: controller.newAction)
-            menuItem('Save',   actionPerformed: controller.saveAction)
-            menuItem('Delete', actionPerformed: controller.deleteAction)
-            menuItem('Dump',   actionPerformed: controller.&dumpAction)
+            menuItem(newAction)
+            menuItem(saveAction)
+            menuItem(deleteAction)
+            menuItem(dumpAction)
         }
     }
     migLayout(layoutConstraints: 'fill')
@@ -25,9 +46,9 @@ application(title: 'addressbook',
     }
     panel(constraints: 'east, grow', border: titledBorder(title: 'Actions')) {
         migLayout()
-        button('New',    actionPerformed: controller.newAction,    constraints: 'growx, wrap')
-        button('Save',   actionPerformed: controller.saveAction,   constraints: 'growx, wrap')
-        button('Delete', actionPerformed: controller.deleteAction, constraints: 'growx, wrap')
-        button('Dump',   actionPerformed: controller.&dumpAction,  constraints: 'growx, wrap')
+        button(newAction,    constraints: 'growx, wrap')
+        button(saveAction,   constraints: 'growx, wrap')
+        button(deleteAction, constraints: 'growx, wrap')
+        button(dumpAction,   constraints: 'growx, wrap')
     }
 }
