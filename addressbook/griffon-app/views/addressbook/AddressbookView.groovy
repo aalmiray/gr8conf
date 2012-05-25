@@ -1,7 +1,5 @@
 package addressbook
 
-build(AddressbookActions)
-
 application(title: 'addressbook',
   pack: true,
   resizable: true,
