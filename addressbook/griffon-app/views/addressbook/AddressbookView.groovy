@@ -36,15 +36,15 @@ application(title: 'addressbook',
         for (propName in Contact.PROPERTIES) {
             String key = "addressbook.Contact.${propName}.label"
             label(text: app.getMessage(key, GriffonNameUtils.getNaturalName(propName)) + ':', constraints: 'right')
-            textField(columns: 30, constraints: 'grow, wrap',
+            textField(columns: 30, constraints: 'grow, wrap', name: "${propName}TextField",
                 text: bind(propName, source: model, mutual: true))
         }
     }
     panel(constraints: 'east, grow', border: titledBorder(title: app.getMessage('title.Actions', 'Actions'))) {
         migLayout()
-        button(newAction,    constraints: 'growx, wrap')
-        button(saveAction,   constraints: 'growx, wrap')
-        button(deleteAction, constraints: 'growx, wrap')
-        button(dumpAction,   constraints: 'growx, wrap')
+        button(newAction,    constraints: 'growx, wrap', name: 'newButton')
+        button(saveAction,   constraints: 'growx, wrap', name: 'saveButton')
+        button(deleteAction, constraints: 'growx, wrap', name: 'deleteButton')
+        button(dumpAction,   constraints: 'growx, wrap', name: 'dumpButton')
     }
 }
