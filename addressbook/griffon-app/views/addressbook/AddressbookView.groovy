@@ -17,11 +17,16 @@ application(title: 'addressbook',
         }
     }
     migLayout(layoutConstraints: 'fill')
-    scrollPane(constraints: 'west') {
+    scrollPane(constraints: 'west, w 180!') {
         list()
     }
     panel(constraints: 'center, grow', border: titledBorder(title: getMessage('title.Contact', 'Contact'))) {
-        label('content')
+        migLayout(layoutConstraints: 'fill')
+        for (propName in Contact.PROPERTIES) {
+            String key = "addressbook.Contact.${propName}.label"
+            label(text: getMessage(key, GriffonNameUtils.getNaturalName(propName)) + ':', constraints: 'right')
+            textField(columns: 30, constraints: 'grow, wrap')
+        }
     }
     panel(constraints: 'east, grow', border: titledBorder(title: getMessage('title.Actions', 'Actions'))) {
         migLayout()
