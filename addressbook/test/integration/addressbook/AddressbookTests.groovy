@@ -6,15 +6,15 @@ import griffon.test.*
 class AddressbookTests extends GriffonUnitTestCase {
     GriffonApplication app
 
-    protected void setUp() {
-        super.setUp()
-    }
-
-    protected void tearDown() {
-        super.tearDown()
-    }
-
-    void testSomething() {
-        fail('Not implemented!')
+    void testSelectedIndexChangeUpdatesModelProperties() {
+        def (m, v, c) = app.createMVCGroup('addressbook')
+        
+        for (propName in Contact.PROPERTIES) {
+            assert !m[propName] 
+        }
+        
+        m.selectedIndex = 0
+        assert m.name == 'Andres'
+        assert m.contacts[0].name == m.name
     }
 }
