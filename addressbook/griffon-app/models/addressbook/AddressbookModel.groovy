@@ -16,7 +16,10 @@ class AddressbookModel {
     int selectedIndex = -1
 
     private selectionUpdater = { e ->
-        println "selectedIndex = $selectedIndex"
+        Contact selectedContact = contacts[selectedIndex]
+        for (propName in Contact.PROPERTIES) {
+            this[propName] = selectedContact[propName]
+        }
     }
 
     final EventList<Contact> contacts = GlazedLists.threadSafeList(new BasicEventList<Contact>())
