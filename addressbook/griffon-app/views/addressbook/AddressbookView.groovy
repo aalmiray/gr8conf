@@ -9,7 +9,7 @@ application(title: 'addressbook',
                imageIcon('/griffon-icon-32x32.png').image,
                imageIcon('/griffon-icon-16x16.png').image]) {
     menuBar {
-        menu('Contacts') {
+        menu(getMessage('title.Contacts', 'Contacts')) {
             menuItem(newAction)
             menuItem(saveAction)
             menuItem(deleteAction)
@@ -20,10 +20,10 @@ application(title: 'addressbook',
     scrollPane(constraints: 'west') {
         list()
     }
-    panel(constraints: 'center, grow', border: titledBorder(title: 'Contact')) {
+    panel(constraints: 'center, grow', border: titledBorder(title: getMessage('title.Contact', 'Contact'))) {
         label('content')
     }
-    panel(constraints: 'east, grow', border: titledBorder(title: 'Actions')) {
+    panel(constraints: 'east, grow', border: titledBorder(title: getMessage('title.Actions', 'Actions'))) {
         migLayout()
         button(newAction,    constraints: 'growx, wrap')
         button(saveAction,   constraints: 'growx, wrap')

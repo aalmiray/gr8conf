@@ -12,7 +12,6 @@ mvcGroups {
     // MVC Group for "addressbook"
     'addressbook' {
         model      = 'addressbook.AddressbookModel'
-        actions    = 'addressbook.AddressbookActions'
         view       = 'addressbook.AddressbookView'
         controller = 'addressbook.AddressbookController'
     }
