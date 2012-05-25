@@ -10,6 +10,10 @@ application(title: 'addressbook',
                imageIcon('/griffon-icon-16x16.png').image]) {
     menuBar {
         menu('Contacts') {
+            menuItem('New',    actionPerformed: controller.newAction)
+            menuItem('Save',   actionPerformed: controller.saveAction)
+            menuItem('Delete', actionPerformed: controller.deleteAction)
+            menuItem('Dump',   actionPerformed: controller.&dumpAction)
         }
     }
     migLayout(layoutConstraints: 'fill')
@@ -20,6 +24,10 @@ application(title: 'addressbook',
         label('content')
     }
     panel(constraints: 'east, grow', border: titledBorder(title: 'Actions')) {
-        label('content')
+        migLayout()
+        button('New',    actionPerformed: controller.newAction,    constraints: 'growx, wrap')
+        button('Save',   actionPerformed: controller.saveAction,   constraints: 'growx, wrap')
+        button('Delete', actionPerformed: controller.deleteAction, constraints: 'growx, wrap')
+        button('Dump',   actionPerformed: controller.&dumpAction,  constraints: 'growx, wrap')
     }
 }
